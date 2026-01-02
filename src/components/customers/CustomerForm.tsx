@@ -10,7 +10,6 @@ import type { Customer } from "@/types/customer";
 const customerSchema = z.object({
 	name: z.string().min(2, "Name must be at least 2 characters"),
 	email: z.email("Invalid email address"),
-	phone: z.string().min(10, "Phone must be at least 10 characters"),
 	address: z.string().min(5, "Address must be at least 5 characters"),
 });
 
@@ -39,7 +38,6 @@ export function CustomerForm({
 			? {
 					name: customer.name,
 					email: customer.email,
-					phone: customer.phone,
 					address: customer.address,
 			  }
 			: undefined,
@@ -70,19 +68,6 @@ export function CustomerForm({
 				/>
 				{errors.email && (
 					<p className="text-sm text-red-500">{errors.email.message}</p>
-				)}
-			</div>
-
-			<div className="space-y-2">
-				<Label htmlFor="phone">Phone</Label>
-				<Input
-					id="phone"
-					type="tel"
-					placeholder="+1234567890"
-					{...register("phone")}
-				/>
-				{errors.phone && (
-					<p className="text-sm text-red-500">{errors.phone.message}</p>
 				)}
 			</div>
 

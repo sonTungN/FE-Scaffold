@@ -61,13 +61,13 @@ function LoginForm({
 					</div>
 					<Button
 						type="submit"
-						className="w-full text-black border-b-2 border-black!"
+						className="w-full border-b-2 border-black!"
 						disabled={isLoading}
 					>
 						{isLoading ? "Logging in..." : "Login"}
 					</Button>
 					<p className="text-sm text-gray-500 text-center mt-4">
-						Demo: Use any email and password to login
+						Admin: Use admin@gmail.com and sonTung1901@
 					</p>
 				</form>
 			</CardContent>

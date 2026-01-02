@@ -8,8 +8,8 @@ import {
 	useUpdateCustomer,
 	useDeleteCustomer,
 } from "@/features/customers/hooks/useCustomers";
-import { CustomerForm } from "@/features/customers/components/CustomerForm";
-import { DeleteDialog } from "@/features/customers/components/DeleteDialog";
+import { CustomerForm } from "@/components/customers/CustomerForm";
+import { DeleteDialog } from "@/components/customers/DeleteDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -89,7 +89,7 @@ export default function CustomerPage() {
 					<div className="flex items-center justify-between">
 						<div>
 							<CardTitle>Customer Management</CardTitle>
-							<CardDescription>
+							<CardDescription className="mt-2">
 								Manage your customers (Admin Only)
 							</CardDescription>
 						</div>
@@ -134,7 +134,9 @@ export default function CustomerPage() {
 											<TableHead className="w-1/4">Name</TableHead>
 											<TableHead className="w-1/4">Email</TableHead>
 											<TableHead className="w-1/4">Address</TableHead>
-											<TableHead className="w-1/4 text-center">Actions</TableHead>
+											<TableHead className="w-1/4 text-center">
+												Actions
+											</TableHead>
 										</TableRow>
 									</TableHeader>
 									<TableBody>
@@ -153,8 +155,12 @@ export default function CustomerPage() {
 													<TableCell className="font-medium w-1/4">
 														{customer.name}
 													</TableCell>
-													<TableCell className="w-1/4">{customer.email}</TableCell>
-													<TableCell className="w-1/4">{customer.address}</TableCell>
+													<TableCell className="w-1/4">
+														{customer.email}
+													</TableCell>
+													<TableCell className="w-1/4">
+														{customer.address}
+													</TableCell>
 													<TableCell className="w-1/4 text-center">
 														<div className="flex justify-center gap-2">
 															<Button

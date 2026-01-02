@@ -8,7 +8,7 @@ import {
 	useDeleteProduct,
 } from "@/features/products/hooks/useProducts";
 import { ProductForm } from "@/components/products/ProductForm";
-import { DeleteDialog } from "@/features/customers/components/DeleteDialog";
+import { DeleteDialog } from "@/components/customers/DeleteDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
