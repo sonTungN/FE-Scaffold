@@ -5,7 +5,6 @@ import axios, {
 	type AxiosResponse,
 } from "axios";
 import { API_BASE_URL } from "./UrlConfig";
-import type { PaginationParams } from "@/types/pagination";
 
 // Create axios instance
 const httpClient: AxiosInstance = axios.create({
@@ -15,20 +14,6 @@ const httpClient: AxiosInstance = axios.create({
 		"Content-Type": "application/json",
 	},
 });
-
-// Request interceptor - add auth token
-httpClient.interceptors.request.use(
-	(config) => {
-		const token = localStorage.getItem("auth_token");
-		if (token) {
-			config.headers.Authorization = `Bearer ${token}`;
-		}
-		return config;
-	},
-	(error) => {
-		return Promise.reject(error);
-	}
-);
 
 // Response interceptor - handle common errors
 httpClient.interceptors.response.use(
@@ -94,21 +79,6 @@ export const HttpUtils = {
 		const response = await httpClient.delete<T>(url, config);
 		return response.data;
 	},
-};
-
-// Build query string from pagination params
-export const buildQueryString = (params: PaginationParams): string => {
-	const queryParams = new URLSearchParams();
-
-	if (params.page !== undefined)
-		queryParams.append("page", params.page.toString());
-	if (params.size !== undefined)
-		queryParams.append("size", params.size.toString());
-	if (params.sort) queryParams.append("sort", params.sort);
-	if (params.search) queryParams.append("search", params.search);
-
-	const queryString = queryParams.toString();
-	return queryString ? `?${queryString}` : "";
 };
 
 export default httpClient;

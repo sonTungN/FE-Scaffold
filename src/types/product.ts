@@ -6,6 +6,10 @@ export interface ProductDto {
 	price: number;
 }
 
+export interface ProductListDto {
+	responseProductDtos: ProductDto[]
+}
+
 export interface ProductCreateRequest {
 	name: string;
 	description: string;

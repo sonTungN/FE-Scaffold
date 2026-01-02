@@ -65,7 +65,7 @@ export function CustomerForm({
 				<Label htmlFor="email">Email</Label>
 				<Input
 					id="email"
-					type="email"
+					type="text"
 					placeholder="john@example.com"
 					{...register("email")}
 				/>

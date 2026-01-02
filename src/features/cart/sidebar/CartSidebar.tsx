@@ -1,7 +1,7 @@
 // Cart Sidebar Component
 import { X, Trash2, Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCartStore } from "@/features/cart/hooks/cartStore";
+import { useCartStore } from "@/features/cart/sidebar/CartSidebarStore";
 
 interface CartSidebarProps {
 	isOpen: boolean;
@@ -45,7 +45,7 @@ export function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
 							{items.map((item) => (
 								<div key={item.id} className="flex gap-3 p-3 border rounded-lg">
 									<img
-										src={item.product.imageUrl || "/placeholder.svg"}
+										src={"/placeholder.svg"}
 										alt={item.product.name}
 										className="w-20 h-20 object-cover rounded"
 										onError={(e) => {

@@ -21,10 +21,18 @@ function AppRoutes() {
 					}
 				/> */}
 				<Route
+					path="cart"
+					element={
+						// <ProtectedRoute user={user}>
+						<CartPage />
+						// </ProtectedRoute>
+					}
+				/>
+				<Route
 					path="customers"
 					element={
 						// <AdminRoute>
-							<CustomerPage />
+						<CustomerPage />
 						// </AdminRoute>
 					}
 				/>
@@ -32,18 +40,11 @@ function AppRoutes() {
 					path="products"
 					element={
 						// <AdminRoute>
-							<ProductsPage />
+						<ProductsPage />
 						// </AdminRoute>
 					}
 				/>
-				<Route
-					path="cart"
-					element={
-						// <ProtectedRoute user={user}>
-							<CartPage />
-						// </ProtectedRoute>
-					}
-				/>
+
 				{/* <Route path="login" element={<LoginPage />} /> */}
 				<Route path="*" element={<p>There's nothing here: 404!</p>} />
 			</Route>

@@ -1,6 +1,5 @@
-// Customer Delete Dialog Component
-import { useDeleteCustomerDialog } from "./DeleteCustomerDialogHook";
-import { useDeleteCustomerDialogStore } from "./DeleteCustomerDialogStore";
+import { useDeleteProductDialog } from "./DeleteProductDialogHook";
+import { useDeleteProductDialogStore } from "./DeleteProductDialogStore";
 import {
 	Dialog,
 	DialogContent,
@@ -10,18 +9,22 @@ import {
 	DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { useCustomerTable } from "../customer-table/CustomerTableHook";
+import { useProductTable } from "../product-table/ProductTableHook";
 
-export function DeleteCustomerDialog() {
-	const { refetch } = useCustomerTable();
+interface DeleteProductDialogProps {
+	customerId: string;
+}
 
-	const { deletingCustomer, isDeleteOpen, closeDeleteDialog } =
-		useDeleteCustomerDialogStore();
-	const deleteMutation = useDeleteCustomerDialog();
+export function DeleteProductDialog({ customerId }: DeleteProductDialogProps) {
+	const { refetch } = useProductTable(customerId);
+
+	const { deletingProduct, isDeleteOpen, closeDeleteDialog } =
+		useDeleteProductDialogStore();
+	const deleteMutation = useDeleteProductDialog();
 
 	const handleOnDelete = async () => {
-		if (deletingCustomer) {
-			await deleteMutation.mutateAsync(deletingCustomer.id);
+		if (deletingProduct) {
+			await deleteMutation.mutateAsync(deletingProduct.id);
 			closeDeleteDialog();
 			refetch();
 		}
@@ -31,7 +34,7 @@ export function DeleteCustomerDialog() {
 		closeDeleteDialog();
 	};
 
-	if (!deletingCustomer) return null;
+	if (!deletingProduct) return null;
 
 	return (
 		<Dialog
@@ -40,10 +43,10 @@ export function DeleteCustomerDialog() {
 		>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>Delete Customer</DialogTitle>
+					<DialogTitle>Delete Product</DialogTitle>
 					<DialogDescription>
 						Are you sure you want to delete{" "}
-						<strong>{deletingCustomer.name}</strong>? This action cannot be
+						<strong>{deletingProduct.name}</strong>? This action cannot be
 						undone.
 					</DialogDescription>
 				</DialogHeader>

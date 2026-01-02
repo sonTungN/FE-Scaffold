@@ -1,6 +1,6 @@
 // Cart Icon Component with badge
 import { ShoppingCart } from "lucide-react";
-import { useCartStore } from "@/features/cart/hooks/cartStore";
+import { useCartStore } from "@/features/cart/sidebar/CartSidebarStore";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 

@@ -10,12 +10,12 @@ const CUSTOMER_PREFIX_URL = "/customer";
 const PRODUCTS_PREFIX_URL = "/product";
 
 export const UrlConfig = {
-	// Auth endpoints
-	AUTH: {
-		LOGIN: "/auth/login",
-		REGISTER: "/auth/register",
-		LOGOUT: "/auth/logout",
-	},
+	// // Auth endpoints
+	// AUTH: {
+	// 	LOGIN: "/auth/login",
+	// 	REGISTER: "/auth/register",
+	// 	LOGOUT: "/auth/logout",
+	// },
 
 	// Customer endpoints (Admin only)
 	CUSTOMERS: {

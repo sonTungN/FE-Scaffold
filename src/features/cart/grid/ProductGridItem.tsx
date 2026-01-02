@@ -9,14 +9,14 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { useCartStore } from "@/features/cart/hooks/cartStore";
+import { useCartStore } from "@/features/cart/sidebar/CartSidebarStore";
 import type { ProductDto } from "@/types/product";
 
-interface ProductCardProps {
+interface ProductGridItemProps {
 	product: ProductDto;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductGridItem({ product }: ProductGridItemProps) {
 	const { addToCart, isInCart, items, updateQuantity } = useCartStore();
 	const inCart = isInCart(product.id);
 	const cartItem = items.find((item) => item.product.id === product.id);
@@ -37,7 +37,6 @@ export function ProductCard({ product }: ProductCardProps) {
 		}
 	};
 
-	// Use placeholder image if no imageUrl or invalid URL
 	const imageUrl = "/placeholder.svg";
 
 	return (
@@ -96,10 +95,6 @@ export function ProductCard({ product }: ProductCardProps) {
 								<Plus className="h-4 w-4" />
 							</Button>
 						</div>
-						{/* <div className="flex items-center justify-center text-sm text-green-600">
-							<Check className="mr-1 h-4 w-4" />
-							In Cart
-						</div> */}
 					</div>
 				)}
 			</CardFooter>

@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus, Search } from "lucide-react";
-import { useCustomerTable } from "@/features/customers/table/CustomerTableHook";
+import { useCustomerTable } from "@/features/customers/customer-table/CustomerTableHook";
 import { CreateCustomerDialog } from "@/features/customers/customer-dialog-create/CreateCustomerDialog";
 import { UpdateCustomerDialog } from "@/features/customers/customer-dialog-update/UpdateCustomerDialog";
 import { DeleteCustomerDialog } from "@/features/customers/customer-dialog-delete/DeleteCustomerDialog";
@@ -19,7 +19,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import type { Customer } from "@/types/customer";
-import CustomerTable from "@/features/customers/table/CustomerTable";
+import CustomerTable from "@/features/customers/customer-table/CustomerTable";
 
 export default function CustomerPage() {
 	const navigate = useNavigate();
