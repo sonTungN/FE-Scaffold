@@ -1,15 +1,13 @@
 import { Link } from "react-router-dom";
-import { useAuthStore } from "@/store/authStore";
-import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const { isAuthenticated, logout } = useAuthStore();
-  const navigate = useNavigate();
+  // const { isAuthenticated, logout } = useAuthStore();
+  // const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
+  // const handleLogout = () => {
+  //   logout();
+  //   navigate("/login");
+  // };
 
   return (
 		<div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,21 +26,21 @@ function Navbar() {
 						to="/cart"
 						className="text-sm text-black hover:underline no-underline"
 					>
-						Cart (USER)
+						Cart
 					</Link>
 					<Link
 						to="/customers"
 						className="text-sm text-black hover:underline no-underline"
 					>
-						Customers (ADMIN)
+						Customers
 					</Link>
 					<Link
 						to="/products"
 						className="text-sm text-black hover:underline no-underline"
 					>
-						Products (ADMIN)
+						Products
 					</Link>
-					{isAuthenticated ? (
+					{/* {isAuthenticated ? (
 						<button
 							onClick={handleLogout}
 							className="text-sm text-black hover:bg-red-100 bg-red-300 border-0 px-4 py-1.5 rounded-md cursor-pointer"
@@ -56,7 +54,7 @@ function Navbar() {
 						>
 							Login
 						</Link>
-					)}
+					)} */}
 				</nav>
 			</div>
 		</div>

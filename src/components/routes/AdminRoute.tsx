@@ -11,7 +11,6 @@ export default function AdminRoute({ children }: AdminRouteProps) {
 	const { isAuthenticated, isAdmin } = useAuthStore();
 
 	if (!isAuthenticated) {
-		// Redirect to login if not authenticated
 		return <Navigate to="/login" replace />;
 	}
 

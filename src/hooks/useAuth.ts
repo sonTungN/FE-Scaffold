@@ -1,7 +1,7 @@
 import { useAuthStore } from "@/store/authStore";
 
 export function useAuth() {
-	const { user, isAuthenticated, login, logout, setUser, setToken } =
+	const { user, isAuthenticated, login, logout, setUser } =
 		useAuthStore();
 
 	return {
@@ -9,7 +9,6 @@ export function useAuth() {
 		isAuthenticated,
 		login,
 		logout,
-		setUser,
-		setToken,
+		setUser
 	};
 }

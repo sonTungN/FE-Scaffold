@@ -1,7 +1,7 @@
 // Customer Page - Admin only with CRUD operations
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Eye, Pencil, Trash2, Plus, Search } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 import {
 	useCustomers,
 	useCreateCustomer,
@@ -25,19 +25,13 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from "@/components/ui/dialog";
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from "@/components/ui/table";
+
 import type {
 	Customer,
 	CustomerCreateRequest,
 	CustomerUpdateRequest,
 } from "@/types/customer";
+import CustomerTable from "@/components/customers/CustomerTable";
 
 export default function CustomerPage() {
 	const navigate = useNavigate();
@@ -115,85 +109,14 @@ export default function CustomerPage() {
 						</div>
 					</div>
 
-					{/* Table */}
-					{isLoading && (
-						<p className="text-center py-4">Loading customers...</p>
-					)}
-					{error && (
-						<p className="text-center py-4 text-red-500">
-							Error loading customers
-						</p>
-					)}
-
-					{data && (
-						<>
-							<div className="border rounded-lg">
-								<Table>
-									<TableHeader>
-										<TableRow>
-											<TableHead className="w-1/4">Name</TableHead>
-											<TableHead className="w-1/4">Email</TableHead>
-											<TableHead className="w-1/4">Address</TableHead>
-											<TableHead className="w-1/4 text-center">
-												Actions
-											</TableHead>
-										</TableRow>
-									</TableHeader>
-									<TableBody>
-										{data.length === 0 ? (
-											<TableRow>
-												<TableCell
-													colSpan={4}
-													className="text-center py-8 text-slate-500"
-												>
-													No customers found
-												</TableCell>
-											</TableRow>
-										) : (
-											data.map((customer) => (
-												<TableRow key={customer.id}>
-													<TableCell className="font-medium w-1/4">
-														{customer.name}
-													</TableCell>
-													<TableCell className="w-1/4">
-														{customer.email}
-													</TableCell>
-													<TableCell className="w-1/4">
-														{customer.address}
-													</TableCell>
-													<TableCell className="w-1/4 text-center">
-														<div className="flex justify-center gap-2">
-															<Button
-																variant="outline"
-																size="sm"
-																onClick={() => handleViewProducts(customer.id)}
-															>
-																<Eye className="h-4 w-4" />
-															</Button>
-															<Button
-																variant="outline"
-																size="sm"
-																onClick={() => setEditingCustomer(customer)}
-															>
-																<Pencil className="h-4 w-4" />
-															</Button>
-															<Button
-																variant="destructive"
-																size="sm"
-																onClick={() => setDeletingCustomer(customer)}
-															>
-																<Trash2 className="h-4 w-4" />
-															</Button>
-														</div>
-													</TableCell>
-												</TableRow>
-											))
-										)}
-									</TableBody>
-								</Table>
-							</div>
-						</>
-					)}
+					<CustomerTable
+						isLoading={isLoading}
+						error={error ? error.message : null}
+						data={data ?? []}
+						handleViewProducts={handleViewProducts}
+						setEditingCustomer={(customer: Customer) => setEditingCustomer(customer)}
+						setDeletingCustomer={(customer: Customer) => setDeletingCustomer(customer)}
+					/>
 				</CardContent>
 			</Card>
 
