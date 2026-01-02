@@ -1,11 +1,12 @@
-// Customer Form Component with validation
+// Customer Form Component - Pure presentational component (reusable placeholder)
+// This form is used by both CreateCustomerDialog and UpdateCustomerDialog
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import type { Customer } from "@/types/customer";
+import type { Customer, CustomerCreateRequest } from "@/types/customer";
 
 const customerSchema = z.object({
 	name: z.string().min(2, "Name must be at least 2 characters"),
@@ -16,13 +17,15 @@ const customerSchema = z.object({
 type CustomerFormData = z.infer<typeof customerSchema>;
 
 interface CustomerFormProps {
+	formType: "create" | "update";
 	customer?: Customer;
-	onSubmit: (data: CustomerFormData) => void;
+	onSubmit: (data: CustomerCreateRequest) => Promise<void>;
 	onCancel: () => void;
 	isSubmitting?: boolean;
 }
 
 export function CustomerForm({
+	formType,
 	customer,
 	onSubmit,
 	onCancel,
@@ -89,7 +92,11 @@ export function CustomerForm({
 					Cancel
 				</Button>
 				<Button type="submit" disabled={isSubmitting}>
-					{isSubmitting ? "Saving..." : customer ? "Update" : "Create"}
+					{isSubmitting
+						? "Saving..."
+						: formType === "create"
+						? "Create"
+						: "Update"}
 				</Button>
 			</div>
 		</form>

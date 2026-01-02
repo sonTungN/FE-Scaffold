@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuthStore } from "@/store/authStore";
+import { useAuthStore } from "@/features/auth/hook/authStore";
 import { ROUTES } from "@/utils/RoutesConstant";
-import LoginForm from "@/components/auth/LoginForm";
+import LoginForm from "@/features/auth/ui/form/LoginForm";
 
 export default function LoginPage() {
 	const [email, setEmail] = useState("");

@@ -7,8 +7,7 @@ import {
 	useUpdateProduct,
 	useDeleteProduct,
 } from "@/features/products/hooks/useProducts";
-import { ProductForm } from "@/components/products/ProductForm";
-import { DeleteDialog } from "@/components/customers/DeleteDialog";
+import { ProductForm } from "@/features/products/ui/form/ProductForm";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -275,15 +274,15 @@ export default function ProductsPage() {
 			</Dialog>
 
 			{/* Delete Dialog */}
-			{deletingProduct && (
-				<DeleteDialog
+			{/* {deletingProduct && (
+				<DeleteProductDialog
 					open={!!deletingProduct}
 					onOpenChange={(open) => !open && setDeletingProduct(null)}
 					onConfirm={handleDelete}
 					customerName={deletingProduct.name}
 					isDeleting={deleteMutation.isPending}
 				/>
-			)}
+			)} */}
 		</div>
 	);
 }

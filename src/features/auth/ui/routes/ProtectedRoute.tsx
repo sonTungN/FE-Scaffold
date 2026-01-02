@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useProtectedRoute } from '@/hooks/useProtectedRoute';
+import { useProtectedRoute } from '@/features/auth/hook/useProtectedRoute';
 import type { User } from '@/types/auth';
 
 interface ProtectedRouteProps {

@@ -1,7 +1,7 @@
 // Cart Sidebar Component
 import { X, Trash2, Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCartStore } from "@/store/cartStore";
+import { useCartStore } from "@/features/cart/hooks/cartStore";
 
 interface CartSidebarProps {
 	isOpen: boolean;

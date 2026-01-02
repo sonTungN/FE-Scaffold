@@ -1,6 +1,6 @@
 // Admin Route - Protects routes that require admin access
 import { Navigate } from "react-router-dom";
-import { useAuthStore } from "@/store/authStore";
+import { useAuthStore } from "@/features/auth/hook/authStore";
 import type { ReactNode } from "react";
 
 interface AdminRouteProps {

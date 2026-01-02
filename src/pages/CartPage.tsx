@@ -2,9 +2,9 @@
 import { useState } from "react";
 import { Search } from "lucide-react";
 import { useAllProducts } from "@/features/products/hooks/useProducts";
-import { ProductCard } from "@/components/products/ProductCard";
-import { CartIcon } from "@/components/cart/CartIcon";
-import { CartSidebar } from "@/components/cart/CartSidebar";
+import { ProductCard } from "@/features/products/ui/card/ProductCard";
+import { CartIcon } from "@/features/cart/ui/CartIcon";
+import { CartSidebar } from "@/features/cart/ui/CartSidebar";
 import { Input } from "@/components/ui/input";
 import {
 	Select,

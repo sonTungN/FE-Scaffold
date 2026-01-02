@@ -9,7 +9,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { useCartStore } from "@/store/cartStore";
+import { useCartStore } from "@/features/cart/hooks/cartStore";
 import type { ProductDto } from "@/types/product";
 
 interface ProductCardProps {

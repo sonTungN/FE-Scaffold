@@ -2,14 +2,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus, Search } from "lucide-react";
-import {
-	useCustomers,
-	useCreateCustomer,
-	useUpdateCustomer,
-	useDeleteCustomer,
-} from "@/features/customers/hooks/useCustomers";
-import { CustomerForm } from "@/components/customers/CustomerForm";
-import { DeleteDialog } from "@/components/customers/DeleteDialog";
+import { useCustomerTable } from "@/features/customers/table/CustomerTableHook";
+import { CreateCustomerDialog } from "@/features/customers/customer-dialog-create/CreateCustomerDialog";
+import { UpdateCustomerDialog } from "@/features/customers/customer-dialog-update/UpdateCustomerDialog";
+import { DeleteCustomerDialog } from "@/features/customers/dialog/DeleteCustomerDialog";
+import { useCreateCustomerDialogStore } from "@/features/customers/customer-dialog-create/CreateCustomerDialogStore";
+import { useUpdateCustomerDialogStore } from "@/features/customers/customer-dialog-update/UpdateCustomerDialogStore";
+import { useDeleteCustomerDialogStore } from "@/features/customers/dialog/DeleteCustomerDialogStore";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -19,58 +18,30 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import {
-	Dialog,
-	DialogContent,
-	DialogHeader,
-	DialogTitle,
-} from "@/components/ui/dialog";
-
-import type {
-	Customer,
-	CustomerCreateRequest,
-	CustomerUpdateRequest,
-} from "@/types/customer";
-import CustomerTable from "@/components/customers/CustomerTable";
+import type { Customer } from "@/types/customer";
+import CustomerTable from "@/features/customers/table/CustomerTable";
 
 export default function CustomerPage() {
 	const navigate = useNavigate();
 	const [search, setSearch] = useState("");
 
 	// Dialog states
-	const [isCreateOpen, setIsCreateOpen] = useState(false);
-	const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
-	const [deletingCustomer, setDeletingCustomer] = useState<Customer | null>(
-		null
-	);
+	const { toggleCreateDialog } = useCreateCustomerDialogStore();
+	const { setEditingCustomer } = useUpdateCustomerDialogStore();
+	const { setDeletingCustomer } = useDeleteCustomerDialogStore();
 
-	// Queries and mutations
-	const { data, isLoading, error } = useCustomers();
-	const createMutation = useCreateCustomer();
-	const updateMutation = useUpdateCustomer();
-	const deleteMutation = useDeleteCustomer();
+	// Queries
+	const { data, isLoading, error } = useCustomerTable();
 
-	const handleCreateSubmit = async (formData: CustomerCreateRequest) => {
-		await createMutation.mutateAsync(formData);
-		setIsCreateOpen(false);
-	};
-
-	const handleEditSubmit = async (formData: CustomerUpdateRequest) => {
-		if (editingCustomer) {
-			await updateMutation.mutateAsync({
-				id: editingCustomer.id,
-				data: formData,
-			});
-			setEditingCustomer(null);
-		}
-	};
-
-	const handleDelete = async () => {
-		if (deletingCustomer) {
-			await deleteMutation.mutateAsync(deletingCustomer.id);
-			setDeletingCustomer(null);
-		}
-	};
+	// Filter customers based on search
+	const filteredCustomers = data
+		? data.filter(
+				(customer) =>
+					customer.name.toLowerCase().includes(search.toLowerCase()) ||
+					customer.email.toLowerCase().includes(search.toLowerCase()) ||
+					customer.address.toLowerCase().includes(search.toLowerCase())
+		  )
+		: [];
 
 	const handleViewProducts = (customerId: string) => {
 		navigate(`/products?customerId=${customerId}`);
@@ -87,7 +58,7 @@ export default function CustomerPage() {
 								Manage your customers (Admin Only)
 							</CardDescription>
 						</div>
-						<Button onClick={() => setIsCreateOpen(true)}>
+						<Button onClick={toggleCreateDialog}>
 							<Plus className="mr-2 h-4 w-4" />
 							Add Customer
 						</Button>
@@ -112,58 +83,26 @@ export default function CustomerPage() {
 					<CustomerTable
 						isLoading={isLoading}
 						error={error ? error.message : null}
-						data={data ?? []}
+						data={filteredCustomers}
 						handleViewProducts={handleViewProducts}
-						setEditingCustomer={(customer: Customer) => setEditingCustomer(customer)}
-						setDeletingCustomer={(customer: Customer) => setDeletingCustomer(customer)}
+						setEditingCustomer={(customer: Customer) =>
+							setEditingCustomer(customer)
+						}
+						setDeletingCustomer={(customer: Customer) =>
+							setDeletingCustomer(customer)
+						}
 					/>
 				</CardContent>
 			</Card>
 
 			{/* Create Dialog */}
-			<Dialog open={isCreateOpen} onOpenChange={setIsCreateOpen}>
-				<DialogContent>
-					<DialogHeader>
-						<DialogTitle>Create New Customer</DialogTitle>
-					</DialogHeader>
-					<CustomerForm
-						onSubmit={handleCreateSubmit}
-						onCancel={() => setIsCreateOpen(false)}
-						isSubmitting={createMutation.isPending}
-					/>
-				</DialogContent>
-			</Dialog>
+			<CreateCustomerDialog />
 
-			{/* Edit Dialog */}
-			<Dialog
-				open={!!editingCustomer}
-				onOpenChange={(open: boolean) => !open && setEditingCustomer(null)}
-			>
-				<DialogContent>
-					<DialogHeader>
-						<DialogTitle>Edit Customer</DialogTitle>
-					</DialogHeader>
-					{editingCustomer && (
-						<CustomerForm
-							customer={editingCustomer}
-							onSubmit={handleEditSubmit}
-							onCancel={() => setEditingCustomer(null)}
-							isSubmitting={updateMutation.isPending}
-						/>
-					)}
-				</DialogContent>
-			</Dialog>
+			{/* Update Dialog */}
+			<UpdateCustomerDialog />
 
 			{/* Delete Dialog */}
-			{deletingCustomer && (
-				<DeleteDialog
-					open={!!deletingCustomer}
-					onOpenChange={(open: boolean) => !open && setDeletingCustomer(null)}
-					onConfirm={handleDelete}
-					customerName={deletingCustomer.name}
-					isDeleting={deleteMutation.isPending}
-				/>
-			)}
+			<DeleteCustomerDialog />
 		</div>
 	);
 }
