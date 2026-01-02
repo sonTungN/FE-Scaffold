@@ -1,16 +1,14 @@
 import apiClient from "@/services/api";
-import type { AuthResponse } from "@/types";
+import type { AuthResponse } from "@/types/auth";
 import { UrlConfig } from "@/utils/UrlConfig";
 
 export const authService = {
 	async login(email: string, password: string): Promise<AuthResponse> {
 		const response = await apiClient.post<AuthResponse>(
-			UrlConfig.AUTH.LOGIN,
-			{
-				email,
-				password,
-			}
-		);
+      UrlConfig.AUTH.LOGIN, {
+			email,
+			password,
+		});
 		return response.data;
 	},
 

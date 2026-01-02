@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { useProtectedRoute } from '@/hooks/useProtectedRoute';
-import type { User } from '@/types';
+import type { User } from '@/types/auth';
 
 interface ProtectedRouteProps {
   children: ReactNode;

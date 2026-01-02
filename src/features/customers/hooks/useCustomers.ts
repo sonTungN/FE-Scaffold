@@ -4,23 +4,21 @@ import { customerService } from "../services/customerService";
 import type {
 	CustomerCreateRequest,
 	CustomerUpdateRequest,
-	PaginationParams,
-} from "@/types";
+} from "@/types/customer";
 
 // Query keys
 export const customerKeys = {
 	all: ["customers"],
 	lists: () => [...customerKeys.all, "list"],
-	list: (params: PaginationParams) => [...customerKeys.lists(), params],
 	details: () => [...customerKeys.all, "detail"],
 	detail: (id: string) => [...customerKeys.details(), id],
 };
 
 // Get customers with pagination
-export function useCustomers(params: PaginationParams) {
+export function useCustomers() {
 	return useQuery({
-		queryKey: customerKeys.list(params),
-		queryFn: () => customerService.getCustomers(params),
+		queryKey: customerKeys.all,
+		queryFn: () => customerService.getAllCustomers(),
 	});
 }
 

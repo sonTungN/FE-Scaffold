@@ -5,6 +5,7 @@ import axios, {
 	type AxiosResponse,
 } from "axios";
 import { API_BASE_URL } from "./UrlConfig";
+import type { PaginationParams } from "@/types/pagination";
 
 // Create axios instance
 const httpClient: AxiosInstance = axios.create({
@@ -94,44 +95,6 @@ export const HttpUtils = {
 		return response.data;
 	},
 };
-
-// Paginated response type for Spring Boot
-export interface PageResponse<T> {
-	content: T[];
-	pageable: {
-		pageNumber: number;
-		pageSize: number;
-		sort: {
-			sorted: boolean;
-			unsorted: boolean;
-			empty: boolean;
-		};
-		offset: number;
-		paged: boolean;
-		unpaged: boolean;
-	};
-	totalPages: number;
-	totalElements: number;
-	last: boolean;
-	size: number;
-	number: number;
-	sort: {
-		sorted: boolean;
-		unsorted: boolean;
-		empty: boolean;
-	};
-	numberOfElements: number;
-	first: boolean;
-	empty: boolean;
-}
-
-// Query parameters for paginated requests
-export interface PaginationParams {
-	page?: number;
-	size?: number;
-	sort?: string; // e.g., "name,asc" or "createdAt,desc"
-	search?: string;
-}
 
 // Build query string from pagination params
 export const buildQueryString = (params: PaginationParams): string => {

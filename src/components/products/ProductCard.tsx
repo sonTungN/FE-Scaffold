@@ -1,5 +1,5 @@
 // Product Card Component for grid display
-import { ShoppingCart, Plus, Minus, Check } from "lucide-react";
+import { ShoppingCart, Plus, Minus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -10,7 +10,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 import { useCartStore } from "@/store/cartStore";
-import type { ProductDto } from "@/types";
+import type { ProductDto } from "@/types/product";
 
 interface ProductCardProps {
 	product: ProductDto;
@@ -96,10 +96,10 @@ export function ProductCard({ product }: ProductCardProps) {
 								<Plus className="h-4 w-4" />
 							</Button>
 						</div>
-						<div className="flex items-center justify-center text-sm text-green-600">
+						{/* <div className="flex items-center justify-center text-sm text-green-600">
 							<Check className="mr-1 h-4 w-4" />
 							In Cart
-						</div>
+						</div> */}
 					</div>
 				)}
 			</CardFooter>

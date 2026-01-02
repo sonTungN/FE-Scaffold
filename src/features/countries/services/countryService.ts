@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Country } from '@/types';
+import type { Country } from '@/types/country';
 
 const REST_COUNTRIES_API = 'https://restcountries.com/v3.1';
 

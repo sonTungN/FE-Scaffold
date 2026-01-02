@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
-import type { User } from "@/types";
+import type { User } from "@/types/auth";
 
 interface UseProtectedRouteOptions {
 	user: User | null;

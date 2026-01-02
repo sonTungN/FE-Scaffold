@@ -5,14 +5,14 @@ import { useAllProducts } from "@/features/products/hooks/useProducts";
 import { ProductCard } from "@/components/products/ProductCard";
 import { CartIcon } from "@/components/cart/CartIcon";
 import { CartSidebar } from "@/components/cart/CartSidebar";
-import { Input } from "@/components/ui/Input";
+import { Input } from "@/components/ui/input";
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/components/ui/Select";
+} from "@/components/ui/select";
 
 export default function CartPage() {
 	const [search, setSearch] = useState("");

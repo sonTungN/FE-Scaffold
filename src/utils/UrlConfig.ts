@@ -38,13 +38,4 @@ export const UrlConfig = {
 		UPDATE: (id: string) => PRODUCTS_PREFIX_URL + `/product/${id}`,
 		DELETE: (id: string) => PRODUCTS_PREFIX_URL + `/product/${id}`,
 	},
-
-	// // Cart endpoints (optional - if backend supports cart persistence)
-	// CART: {
-	// 	GET: "/cart", // GET: user's cart
-	// 	ADD_ITEM: "/cart/items", // POST: { productId, quantity }
-	// 	UPDATE_ITEM: (itemId: string) => `/cart/items/${itemId}`, // PATCH: { quantity }
-	// 	REMOVE_ITEM: (itemId: string) => `/cart/items/${itemId}`, // DELETE
-	// 	CLEAR: "/cart/clear", // DELETE
-	// },
 } as const;

@@ -4,8 +4,8 @@ import { productService } from "../services/productService";
 import type {
 	ProductCreateRequest,
 	ProductUpdateRequest,
-	PaginationParams,
-} from "@/types";
+} from "@/types/product";
+import type { PaginationParams } from "@/types/pagination";
 
 // Query keys
 export const productKeys = {

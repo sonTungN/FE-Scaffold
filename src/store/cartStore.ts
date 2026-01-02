@@ -1,7 +1,8 @@
 // Cart store with Zustand
+import type { CartItem } from "@/types/cart";
+import type { ProductDto } from "@/types/product";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { ProductDto, CartItem } from "@/types";
 
 interface CartState {
 	items: CartItem[];

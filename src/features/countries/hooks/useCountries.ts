@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { countryService } from '@/features/countries/services/countryService';
-import type { Country } from '@/types';
+import type { Country } from '@/types/country';
 
 export function useCountries() {
   const [countries, setCountries] = useState<Country[]>([]);

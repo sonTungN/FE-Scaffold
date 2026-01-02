@@ -1,16 +1,12 @@
 // Product Service - API calls for product management
-import {
-	HttpUtils,
-	buildQueryString,
-	type PageResponse,
-	type PaginationParams,
-} from "@/utils/HttpUtils";
+import { HttpUtils, buildQueryString } from "@/utils/HttpUtils";
+import { type PageResponse, type PaginationParams } from "@/types/pagination";
 import { UrlConfig } from "@/utils/UrlConfig";
 import type {
 	ProductDto,
 	ProductCreateRequest,
 	ProductUpdateRequest,
-} from "@/types";
+} from "@/types/product";
 
 export const productService = {
 	// Get paginated list of products
@@ -30,7 +26,9 @@ export const productService = {
 	): Promise<PageResponse<ProductDto>> => {
 		const queryString = buildQueryString(params);
 		return HttpUtils.get<PageResponse<ProductDto>>(
-			`${UrlConfig.CUSTOMERS.GET_PRODUCTS_BY_CUSTOMER_ID(customerId)}${queryString}`
+			`${UrlConfig.CUSTOMERS.GET_PRODUCTS_BY_CUSTOMER_ID(
+				customerId
+			)}${queryString}`
 		);
 	},
 

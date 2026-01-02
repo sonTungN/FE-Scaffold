@@ -7,7 +7,7 @@ import {
 	useUpdateProduct,
 	useDeleteProduct,
 } from "@/features/products/hooks/useProducts";
-import { ProductForm } from "@/features/products/components/ProductForm";
+import { ProductForm } from "@/components/products/ProductForm";
 import { DeleteDialog } from "@/features/customers/components/DeleteDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -38,8 +38,9 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-	} from "@/components/ui/select";
-import type { ProductDto, ProductUpdateRequest } from "@/types";
+} from "@/components/ui/select";
+import type { ProductDto } from "@/types/product";
+import type { ProductUpdateRequest } from "@/types/product";
 
 export default function ProductsPage() {
 	const navigate = useNavigate();

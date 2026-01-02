@@ -17,7 +17,7 @@ export default function AdminRoute({ children }: AdminRouteProps) {
 
 	if (!isAdmin) {
 		// Redirect to home if authenticated but not admin
-		return <Navigate to="/home" replace />;
+		return <Navigate to="/" replace />;
 	}
 
 	return <>{children}</>;

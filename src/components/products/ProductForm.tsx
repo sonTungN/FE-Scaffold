@@ -2,10 +2,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
-import { Label } from "@/components/ui/Label";
-import type { ProductDto } from "@/types";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import type { ProductDto } from "@/types/product";
 
 const productSchema = z.object({
 	name: z.string().min(2, "Name must be at least 2 characters"),
@@ -41,8 +41,6 @@ export function ProductForm({
 					name: product.name,
 					description: product.description,
 					price: product.price,
-					imageUrl: product.imageUrl || "",
-					stock: product.stock || 0,
 			  }
 			: undefined,
 	});

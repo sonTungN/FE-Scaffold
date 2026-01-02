@@ -5,7 +5,7 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import type { Customer } from "@/types";
+import type { Customer } from "@/types/customer";
 
 const customerSchema = z.object({
 	name: z.string().min(2, "Name must be at least 2 characters"),

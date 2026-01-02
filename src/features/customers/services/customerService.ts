@@ -1,25 +1,17 @@
 // Customer Service - API calls for customer management
-import {
-	HttpUtils,
-	buildQueryString,
-	type PageResponse,
-	type PaginationParams,
-} from "@/utils/HttpUtils";
 import { UrlConfig } from "@/utils/UrlConfig";
 import type {
 	Customer,
 	CustomerCreateRequest,
 	CustomerUpdateRequest,
-} from "@/types";
+} from "@/types/customer";
+import { HttpUtils } from "@/utils/HttpUtils";
 
 export const customerService = {
 	// Get paginated list of customers
-	getCustomers: async (
-		params: PaginationParams
-	): Promise<PageResponse<Customer>> => {
-		const queryString = buildQueryString(params);
-		return HttpUtils.get<PageResponse<Customer>>(
-			`${UrlConfig.CUSTOMERS.LIST}${queryString}`
+	getAllCustomers: async (): Promise<Customer[]> => {
+		return HttpUtils.get<Customer[]>(
+			`${UrlConfig.CUSTOMERS.LIST}`
 		);
 	},
 
