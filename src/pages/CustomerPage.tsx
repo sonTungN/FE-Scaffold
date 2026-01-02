@@ -5,10 +5,10 @@ import { Plus, Search } from "lucide-react";
 import { useCustomerTable } from "@/features/customers/table/CustomerTableHook";
 import { CreateCustomerDialog } from "@/features/customers/customer-dialog-create/CreateCustomerDialog";
 import { UpdateCustomerDialog } from "@/features/customers/customer-dialog-update/UpdateCustomerDialog";
-import { DeleteCustomerDialog } from "@/features/customers/dialog/DeleteCustomerDialog";
+import { DeleteCustomerDialog } from "@/features/customers/customer-dialog-delete/DeleteCustomerDialog";
 import { useCreateCustomerDialogStore } from "@/features/customers/customer-dialog-create/CreateCustomerDialogStore";
 import { useUpdateCustomerDialogStore } from "@/features/customers/customer-dialog-update/UpdateCustomerDialogStore";
-import { useDeleteCustomerDialogStore } from "@/features/customers/dialog/DeleteCustomerDialogStore";
+import { useDeleteCustomerDialogStore } from "@/features/customers/customer-dialog-delete/DeleteCustomerDialogStore";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
